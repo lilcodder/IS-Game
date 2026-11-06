@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#EADDFF">
+    <title>ИС Игра</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="assets/drukwidecyr-bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <div class="decoration" aria-hidden="true">
+        <img src="assets/Shape5.png" class="shape shape-pink" alt="">
+        <img src="assets/Shape12.png" class="shape shape-purple" alt="">
+    </div>
+    <header class="site-header">
+        <a class="brand" href="index.html">ИС Игра</a>
+        <span class="signature">lilcodder</span>
+    </header>
+
+    <main>
+        <div id="gameSelectionScreen">
+            <div class="hero">
+                <h1>Веб-игра</h1>
+                <p class="lead">Управляйте персонажем стрелками и избегайте монстров. Ловушки задерживают монстров. Игра заканчивается, когда не остаётся жизней.</p>
+            </div>
+            <h2 class="maps-title">Выберите карту</h2>
+            <div id="maps" class="maps"></div>
+            <p id="loading" role="status">Загрузка карт…</p>
+            <div class="instructions">
+                <p>Стрелки — движение. Esc — пауза.</p>
+                <p>На старте 5 жизней. Каждые 5 секунд появляются 2 монстра и 1 ловушка.</p>
+            </div>
+        </div>
+
+        <form id="inputScreen" class="name-screen" hidden>
+            <h1 class="screen-title">Введите имя</h1>
+            <p id="selectedMapName" class="lead"></p>
+            <label class="name-field" for="playerName">Имя игрока</label>
+            <input type="text" id="playerName" placeholder="Введите имя" maxlength="30" required autocomplete="nickname">
+            <div class="form-actions">
+                <button type="submit" class="primary">Начать игру</button>
+                <button type="button" id="backButton" class="outlined">Выбрать карту</button>
+            </div>
+        </form>
+
+        <div id="gameScreen" hidden>
+            <div class="play-heading">
+                <div><h1 class="screen-title">Игра</h1><p>Карта: <span id="mapDisplay"></span></p></div>
+                <button type="button" id="pauseButton" class="tonal">Пауза (Esc)</button>
+            </div>
+            <div class="hud">
+                <div class="hud-item"><span>Игрок</span><b id="playerDisplay"></b></div>
+                <div class="hud-item"><span>Текущее время</span><b id="currentTime"></b></div>
+                <div class="hud-item"><span>Время игры</span><b id="elapsedTime">00:00</b></div>
+                <div class="hud-item life-stat"><span>Жизни</span><b id="livesCounter">5</b></div>
+            </div>
+            <div class="field-frame">
+                <div id="gameContainer" role="img" aria-label="Игровое поле. Управление стрелками."><div id="player"></div></div>
+                <div id="pauseScreen" class="pause" hidden role="dialog" aria-modal="true" aria-labelledby="pauseTitle">
+                    <div class="pause-panel"><h2 id="pauseTitle">Пауза</h2><p>Нажмите Esc, чтобы продолжить.</p><button type="button" id="continueButton" class="primary">Продолжить</button></div>
+                </div>
+            </div>
+            <div class="game-bottom">
+                <div class="legend"><span><i class="legend-player"></i>Игрок</span><span><i class="legend-monster"></i>Монстр</span><span><i class="legend-trap"></i>Ловушка</span></div>
+                <p>Стрелки — движение. Esc — пауза.</p>
+            </div>
+        </div>
+
+        <div id="overScreen" class="result" hidden>
+            <h1 class="screen-title">Игра окончена</h1>
+            <p id="resultPlayer" class="lead"></p>
+            <dl class="result-stats">
+                <div class="stat"><dt>Время игры</dt><dd id="finalTime">00:00</dd></div>
+                <div class="stat"><dt>Столкновения с монстрами</dt><dd id="finalHits">0</dd></div>
+                <div class="stat"><dt>Монстров задержано</dt><dd id="finalBlocked">0</dd></div>
+                <div class="stat"><dt>Осталось жизней</dt><dd id="finalLives">0</dd></div>
+            </dl>
+            <div class="form-actions">
+                <button type="button" id="restartButton" class="primary">Играть сначала</button>
+                <button type="button" id="menuButton" class="outlined">Выбрать карту</button>
+            </div>
+        </div>
+    </main>
+    <footer class="site-footer">ИС Игра · 2026</footer>
+    <script src="script/script.js" defer></script>
+</body>
+</html>
